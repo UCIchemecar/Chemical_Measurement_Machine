@@ -1,4 +1,4 @@
-#define FULL_PUMP_RATE 10.0/10.8 //unit is mL/s, need to be calibrated for different functions of code
+#define FULL_PUMP_RATE 10.0/10.85 //unit is mL/s, need to be calibrated for different functions of code
 #define CTR_PIN 10 // Control the transistor to turn on/off the pump
 #define Pump_Time(pump_amount) ((pump_amount*1000.0)/(FULL_PUMP_RATE))
 /*Alternate formula:
@@ -6,7 +6,7 @@
  #define REDUCED_PUMP_RATE 50 //unit is mL/s
  #define Pump_Time(pump_amount,SLOW_VOLUME) ((1.0-SLOW_VOLUME/100.0)*(pump_amount)/(FULL_PUMP_RATE) + (SLOW_VOLUME/100.0)*pump_amount/(REDUCED_PUMP_RATE))
  */
-float test_amount=5.5;//unit is mL
+float test_amount=9.0;//unit is mL
 
 void setup() {
         TCCR1A = 0x23;//configure the TCCR1A register on mode of operation and TOP
