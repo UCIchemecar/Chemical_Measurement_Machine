@@ -7,10 +7,11 @@
 #define CTR_PIN_PUMP_2 3
 #define CTR_PIN_PUMP_3 4
 
+//change the number below to change the pump amount
 #define WATER_AMOUNT 25.0//unit is mL
 #define THIOSULFATE_AMOUNT 10.0
 #define ACID_AMOUNT 15.0
-//change the number below to change the pump amount
+
 class Pump {
 public:
 float pump_amount;// amount to pump in mL
@@ -37,7 +38,7 @@ Pump Pump2;
 Pump Pump3;
 
 void setup() {
-        DDRD=0x0E;// set 2,3,4 to output.
+        DDRD=0x1C;// set 2,3,4 to output.
         PORTD=0x00;//turn off everything
         Serial.begin(115200);
 
