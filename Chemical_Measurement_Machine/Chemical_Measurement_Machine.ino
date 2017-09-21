@@ -7,9 +7,9 @@
 #define CTR_PIN_PUMP_2 3
 #define CTR_PIN_PUMP_3 4
 
-#define pump1_amount 25.0//unit is mL
-#define pump2_amount 10.0
-#define pump3_amount 15.0
+#define WATER_AMOUNT 25.0//unit is mL
+#define THIOSULFATE_AMOUNT 10.0
+#define ACID_AMOUNT 15.0
 //change the number below to change the pump amount
 class Pump {
 public:
@@ -41,11 +41,11 @@ void setup() {
         PORTD=0x00;//turn off everything
         Serial.begin(115200);
 
-        Pump1.initiate_pump(pump1_amount, CTR_PIN_PUMP_1);
+        Pump1.initiate_pump(WATER_AMOUNT, CTR_PIN_PUMP_1);
         bit_set(PORTD,BIT(CTR_PIN_PUMP_1));
-        Pump2.initiate_pump(pump2_amount, CTR_PIN_PUMP_2);
+        Pump2.initiate_pump(THIOSULFATE_AMOUNT, CTR_PIN_PUMP_2);
         bit_set(PORTD,BIT(CTR_PIN_PUMP_2));
-        Pump3.initiate_pump(pump3_amount, CTR_PIN_PUMP_3);
+        Pump3.initiate_pump(ACID_AMOUNT, CTR_PIN_PUMP_3);
         bit_set(PORTD,BIT(CTR_PIN_PUMP_3));
 }
 
