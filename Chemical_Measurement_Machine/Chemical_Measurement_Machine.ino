@@ -2,7 +2,7 @@
 #define bit_set(reg, bit_mask) ((reg)|=(bit_mask))//set a bit to 1
 #define bit_clear(reg, bit_mask) ((reg&=~(bit_mask)))//set a bit to 0
 
-#define FULL_PUMP_RATE 10.0/10.85 //unit is mL/s, need to be calibrated for different functions of code
+#define FULL_PUMP_RATE 10.0/9.3 //unit is mL/s, need to be calibrated for different functions of code
 #define CTR_PIN_PUMP_1 2// Control the transistor to turn on/off the pump
 #define CTR_PIN_PUMP_2 3
 #define CTR_PIN_PUMP_3 4
