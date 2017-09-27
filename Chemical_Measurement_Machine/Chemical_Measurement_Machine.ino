@@ -2,15 +2,18 @@
 #define bit_set(reg, bit_mask) ((reg)|=(bit_mask))//set a bit to 1
 #define bit_clear(reg, bit_mask) ((reg&=~(bit_mask)))//set a bit to 0
 
-#define FULL_PUMP_RATE 10.0/9.3 //unit is mL/s, need to be calibrated for different functions of code
-#define CTR_PIN_PUMP_1 2// Control the transistor to turn on/off the pump
+#define FULL_PUMP_RATE_1 10.0/9.3 //unit is mL/s, need to be calibrated when tubing is changed
+#define FULL_PUMP_RATE_2 10.0/9.3
+#define FULL_PUMP_RATE_3 10.0/9.3
+
+#define CTR_PIN_PUMP_1 2// Arduino pin that controls the transistor to turn on/off the pump
 #define CTR_PIN_PUMP_2 3
 #define CTR_PIN_PUMP_3 4
 
 //change the number below to change the pump amount
-#define WATER_AMOUNT 25.0//unit is mL
-#define THIOSULFATE_AMOUNT 10.0
-#define ACID_AMOUNT 15.0
+#define WATER_AMOUNT 25.0//unit is mL, pump 1
+#define THIOSULFATE_AMOUNT 10.0//pump 2
+#define ACID_AMOUNT 15.0//pump 3
 
 class Pump {
 public:
@@ -18,11 +21,11 @@ float pump_amount;// amount to pump in mL
 unsigned int pump_ID;//2,3, or 4
 
 
-void initiate_pump(unsigned amount, unsigned pin_ID){
+void initiate_pump(unsigned amount, unsigned pin_ID, float pump_rate){
         start_time=millis();
         pump_amount=amount;
         pump_ID=pin_ID;
-        pump_time=((pump_amount*1000.0)/(FULL_PUMP_RATE));
+        pump_time=((pump_amount*1000.0)/(pump_rate));
 }
 void check_pump(){
         (millis()-start_time<pump_time) ?  : bit_clear(PORTD,BIT(pump_ID));
@@ -42,11 +45,11 @@ void setup() {
         PORTD=0x00;//turn off everything
         Serial.begin(115200);
 
-        Pump1.initiate_pump(WATER_AMOUNT, CTR_PIN_PUMP_1);
+        Pump1.initiate_pump(WATER_AMOUNT, CTR_PIN_PUMP_1,FULL_PUMP_RATE_1);
         bit_set(PORTD,BIT(CTR_PIN_PUMP_1));
-        Pump2.initiate_pump(THIOSULFATE_AMOUNT, CTR_PIN_PUMP_2);
+        Pump2.initiate_pump(THIOSULFATE_AMOUNT, CTR_PIN_PUMP_2, FULL_PUMP_RATE_2);
         bit_set(PORTD,BIT(CTR_PIN_PUMP_2));
-        Pump3.initiate_pump(ACID_AMOUNT, CTR_PIN_PUMP_3);
+        Pump3.initiate_pump(ACID_AMOUNT, CTR_PIN_PUMP_3, FULL_PUMP_RATE_3);
         bit_set(PORTD,BIT(CTR_PIN_PUMP_3));
 }
 
