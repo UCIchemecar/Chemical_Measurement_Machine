@@ -1,8 +1,10 @@
 #define BIT(x) (0x01<<(x))//create bit mask
 #define bit_set(reg, bit_mask) ((reg)|=(bit_mask))//set a bit to 1
 #define bit_clear(reg, bit_mask) ((reg&=~(bit_mask)))//set a bit to 0
-From <http://www.avrfreaks.net/forum/tut-c-bit-manipulation-aka-programming-101?name=PNphpBB2&file=viewtopic&t=37871>
 
+/**
+From <http://www.avrfreaks.net/forum/tut-c-bit-manipulation-aka-programming-101?name=PNphpBB2&file=viewtopic&t=37871>
+*/
 #define FULL_PUMP_RATE_1 10.0/9.3 //unit is mL/s, need to be calibrated when tubing is changed
 #define FULL_PUMP_RATE_2 10.0/9.3
 #define FULL_PUMP_RATE_3 10.0/9.3
